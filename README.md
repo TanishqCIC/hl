@@ -1,12 +1,12 @@
 ```markdown
 # Payment Schedule Generator
 
-This Flask web application generates a bond payment schedule based on user inputs, such as face amount, spread, issue date, yield, first payment date, and maturity date. The user can download the generated payment schedule as an Excel file.
+This Flask web application generates a payment schedule based on user inputs, such as face amount, spread, issue date, yield, first payment date, and maturity date. The user can download the generated payment schedule as an Excel file.
 
 ## Features
 
-- **Form Input**: Users input bond details (face amount, spread, issue date, yield, first payment date, maturity date) via a form.
-- **Payment Schedule**: The application processes the input data and generates a bond payment schedule table.
+- **Form Input**: Users input details (face amount, spread, issue date, yield, first payment date, maturity date) via a form.
+- **Payment Schedule**: The application processes the input data and generates a payment schedule table.
 - **Excel Export**: The user can download the payment schedule as an Excel file.
 
 ## Installation
