@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bond Payment Schedule</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 20px;
+            background-color: #f4f4f9;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        table, th, td {
+            border: 1px solid #ccc;
+            text-align: center;
+        }
+        th, td {
+            padding: 10px;
+        }
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        .null-cell {
+            background-color: #f0f0f0;
+            color: gray;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Bond Payment Schedule</h1>
+
+    <p><strong>Face Amount:</strong> {{ data['face_amount'] }}</p>
+    <p><strong>Spread:</strong> {{ data['spread'] }}</p>
+    <p><strong>Issue Date:</strong> {{ data['issue_date'] }}</p>
+    <p><strong>First Payment Date:</strong> {{ data['first_payment_date'] }}</p>
+    <p><strong>Maturity Date:</strong> {{ data['maturity_date'] }}</p>
+    <p><strong>Yield:</strong> {{ data['yield'] }}</p>
+
+    <h2>Generated Payment Schedule</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Pay Date</th>
+                <th>Principal</th>
+                <th>Interest</th>
+                <th>Discount Factor</th>
+                <th>Present Value</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in result %}
+                <tr>
+                    <td>{{ row['Pay Date'] }}</td>
+                    <td class="{% if row['Principal'] == '-' %}null-cell{% endif %}">{{ row['Principal'] }}</td>
+                    <td class="{% if row['Interest'] is none %}null-cell{% endif %}">{{ row['Interest'] }}</td>
+                    <td class="{% if row['Discount Factor'] is none %}null-cell{% endif %}">{{ row['Discount Factor'] }}</td>
+                    <td class="{% if row['Present Value'] is none %}null-cell{% endif %}">{{ row['Present Value'] }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <a href="/download_excel?face_amount={{ data['face_amount'] }}&spread={{ data['spread'] }}&issue_date={{ data['issue_date'] }}&first_payment_date={{ data['first_payment_date'] }}&maturity_date={{ data['maturity_date'] }}&yield={{ data['yield'] }}" class="btn">Download as Excel</a>
+    <br><br>
+
+    <a href="/">Back to Input Form</a>
+
+</body>
+</html>
